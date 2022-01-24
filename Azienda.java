@@ -10,6 +10,7 @@ public class Azienda extends Mediator {
 
     // per una sorta di DB
     private ArrayList<Richiesta> richieste = new ArrayList<>();
+    private ArrayList<Sopralluogo> sopralluoghiEffettuati = new ArrayList<>();
 
     public Azienda(String nome) {
         super(nome);
@@ -37,8 +38,9 @@ public class Azienda extends Mediator {
         return false;
     }
 
-    //pattern Mediator
-    //per Amministratore
+    
+    // pattern Mediator
+    // per Amministratore
     @Override
     public void generaRichiesta(Condominio c, Amministratore a) {
 
@@ -85,8 +87,9 @@ public class Azienda extends Mediator {
             System.out.println("Non ci sono richieste effettuate per questo condominio");
         }
     }
+    
 
-    //per Responsabile
+    // per Responsabile
     @Override
     public void consultaRichieste() {
 
@@ -104,6 +107,16 @@ public class Azienda extends Mediator {
             System.out.println("Non ci sono richieste da revisionare");
         }
     }
+    
+    @Override
+    public void consultaTutteRichieste() {
+        for (int i = 0; i < richieste.size(); i++) {  
+            System.out.println("Richiesta numero: " + i);
+            richieste.get(i).stampaInfo();
+            System.out.println();
+        }
+    }
+
 
     @Override
     public void revisionaRichiesta(int index, boolean b) {
@@ -114,8 +127,40 @@ public class Azienda extends Mediator {
                 System.out.println("La richiesta selezionata è già stata revisionata");
             } else {
                 richieste.get(index).revisiona(b);
+                if(b)
+                    tecnici.get(selectTecnico()).aggiungiRichiestaSopralluogo(richieste.get(index).getCondominio());
             }
         }
     }
+    
+    @Override
+    public void consultaSopralluoghi() {
+        
+        int num = 0;
 
+        for (int i = 0; i < sopralluoghiEffettuati.size(); i++) {
+            if (sopralluoghiEffettuati.get(i).offerta() == false) {
+                num++;
+                System.out.println("Sopralluogo numero: " + i);
+                sopralluoghiEffettuati.get(i).stampaInfo();
+                System.out.println();
+            }
+        }
+        if (num == 0) {
+            System.out.println("Non sono stati effettuati altri sopralluoghi");
+        }
+    }
+
+    
+    // per Tecnico
+    private int selectTecnico(){
+        int index = (int) Math.random()*tecnici.size();
+        return index;
+    }
+
+    @Override
+    public void inviaResponsoSopralluogo(Sopralluogo s) {
+        sopralluoghiEffettuati.add(s);
+    }
+    
 }

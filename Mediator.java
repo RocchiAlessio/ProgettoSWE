@@ -19,6 +19,14 @@ public abstract class Mediator {
     // per il Responsabile
     public abstract void consultaRichieste();
     
+    public abstract void consultaTutteRichieste();
+    
     public abstract void revisionaRichiesta(int index, boolean b);
+    
+    public abstract void consultaSopralluoghi();
+    
+    // per il Tecnico
+    public abstract void inviaResponsoSopralluogo(Sopralluogo s);
+    
     
 }

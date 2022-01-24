@@ -13,4 +13,8 @@ public class Responsabile extends Persona{
     public void revisionaRichiesta(int index, boolean b){
         azienda.revisionaRichiesta(index, b);
     }
+    
+    public void consultaSopralloghi(){
+        azienda.consultaSopralluoghi();
+    }
 }

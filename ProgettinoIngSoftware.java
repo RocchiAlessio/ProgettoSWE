@@ -7,6 +7,10 @@ public class ProgettinoIngSoftware {
         Azienda a = new Azienda("Bruttoloni.org");
         Responsabile r = new Responsabile("Calogero", "Cartelli", a);
         a.assumiResponsabile(r);
+        Tecnico t1 = new Tecnico("Vladimiro", "Sterconi", a);
+        Tecnico t2 = new Tecnico("Andrea", "Salamelli", a);
+        a.aggiungiTecnico(t1);
+        a.aggiungiTecnico(t2);
         
         Amministratore amm = new Amministratore("Beppe", "Fracico", a);
         Condominio c = new Condominio("Strutti 420", 10, 5, 5, 420, amm);
@@ -23,9 +27,20 @@ public class ProgettinoIngSoftware {
         
         //r.consultaRichieste();
         
-        r.revisionaRichiesta(1, true);
+        r.revisionaRichiesta(0, true);
         
-        amm.consultaRichieste();
+        t1.consultaRichieste();
+        t2.consultaRichieste();
+        
+        //amm.consultaRichieste();
+        
+        t1.faiSopralluogo(0);
+        t2.faiSopralluogo(0);
+        
+        r.consultaSopralloghi();
+        
+        t1.consultaRichieste();
+        t2.consultaRichieste();
     }
     
 }
