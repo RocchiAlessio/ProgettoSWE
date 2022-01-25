@@ -10,11 +10,23 @@ public class Responsabile extends Persona{
         azienda.consultaRichieste();
     }
     
+    public void consultaTutteRichieste(){
+        azienda.consultaTutteRichieste();
+    }
+    
     public void revisionaRichiesta(int index, boolean b){
         azienda.revisionaRichiesta(index, b);
     }
     
-    public void consultaSopralloghi(){
+    public void consultaSopralluoghi(){
         azienda.consultaSopralluoghi();
+    }
+    
+    public void consultaTuttiSopralluoghi(){
+        azienda.consultaTuttiSopralluoghi();
+    }
+    
+    public void faiOfferta(int index, int valoreOfferta){
+        azienda.faiOfferta(index, valoreOfferta);
     }
 }

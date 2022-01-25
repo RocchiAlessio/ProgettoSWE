@@ -29,18 +29,27 @@ public class ProgettinoIngSoftware {
         
         r.revisionaRichiesta(0, true);
         
-        t1.consultaRichieste();
-        t2.consultaRichieste();
+        //t1.consultaRichieste();
+        //t2.consultaRichieste();
         
         //amm.consultaRichieste();
         
         t1.faiSopralluogo(0);
         t2.faiSopralluogo(0);
         
-        r.consultaSopralloghi();
+        amm.consultaOfferte();
         
-        t1.consultaRichieste();
-        t2.consultaRichieste();
+        r.consultaSopralluoghi();
+        
+        r.faiOfferta(0, 1000);
+        
+        r.consultaSopralluoghi();
+        
+        amm.consultaOfferte();
+        
+        amm.revisionaOfferta(0, true);
+        
+        amm.consultaTutteOfferte();
     }
     
 }

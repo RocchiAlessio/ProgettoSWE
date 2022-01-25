@@ -33,4 +33,8 @@ public class Sopralluogo {
     public boolean offerta(){
         return offerta;
     }
+    
+    public Condominio getCondominio(){
+        return condominio;
+    }
 }

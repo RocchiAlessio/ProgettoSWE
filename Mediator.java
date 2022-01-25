@@ -25,6 +25,10 @@ public abstract class Mediator {
     
     public abstract void consultaSopralluoghi();
     
+    public abstract void consultaTuttiSopralluoghi();
+    
+    public abstract void faiOfferta(int index, int valoreOfferta);
+    
     // per il Tecnico
     public abstract void inviaResponsoSopralluogo(Sopralluogo s);
     

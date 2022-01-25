@@ -11,6 +11,7 @@ public class Azienda extends Mediator {
     // per una sorta di DB
     private ArrayList<Richiesta> richieste = new ArrayList<>();
     private ArrayList<Sopralluogo> sopralluoghiEffettuati = new ArrayList<>();
+    private ArrayList<Offerta> offerte = new ArrayList<>();
 
     public Azienda(String nome) {
         super(nome);
@@ -38,7 +39,6 @@ public class Azienda extends Mediator {
         return false;
     }
 
-    
     // pattern Mediator
     // per Amministratore
     @Override
@@ -48,7 +48,7 @@ public class Azienda extends Mediator {
             aggiungiAmministratore(a);
             richieste.add(new Richiesta(a, c));
         } else {
-            if(!verificaSeEsiste(a, c)){
+            if (!verificaSeEsiste(a, c)) {
                 richieste.add(new Richiesta(a, c));
             }
         }
@@ -68,6 +68,7 @@ public class Azienda extends Mediator {
         }
         if (num == 0) {
             System.out.println("Non ci sono richieste effettuate");
+            System.out.println();
         }
     }
 
@@ -85,9 +86,9 @@ public class Azienda extends Mediator {
         }
         if (num == 0) {
             System.out.println("Non ci sono richieste effettuate per questo condominio");
+            System.out.println();
         }
     }
-    
 
     // per Responsabile
     @Override
@@ -105,18 +106,18 @@ public class Azienda extends Mediator {
         }
         if (num == 0) {
             System.out.println("Non ci sono richieste da revisionare");
+            System.out.println();
         }
     }
-    
+
     @Override
     public void consultaTutteRichieste() {
-        for (int i = 0; i < richieste.size(); i++) {  
+        for (int i = 0; i < richieste.size(); i++) {
             System.out.println("Richiesta numero: " + i);
             richieste.get(i).stampaInfo();
             System.out.println();
         }
     }
-
 
     @Override
     public void revisionaRichiesta(int index, boolean b) {
@@ -127,15 +128,16 @@ public class Azienda extends Mediator {
                 System.out.println("La richiesta selezionata è già stata revisionata");
             } else {
                 richieste.get(index).revisiona(b);
-                if(b)
+                if (b) {
                     tecnici.get(selectTecnico()).aggiungiRichiestaSopralluogo(richieste.get(index).getCondominio());
+                }
             }
         }
     }
-    
+
     @Override
     public void consultaSopralluoghi() {
-        
+
         int num = 0;
 
         for (int i = 0; i < sopralluoghiEffettuati.size(); i++) {
@@ -148,13 +150,39 @@ public class Azienda extends Mediator {
         }
         if (num == 0) {
             System.out.println("Non sono stati effettuati altri sopralluoghi");
+            System.out.println();
         }
     }
 
+    @Override
+    public void consultaTuttiSopralluoghi() {
+        for (int i = 0; i < sopralluoghiEffettuati.size(); i++) {
+            System.out.println("Sopralluogo numero: " + i);
+            sopralluoghiEffettuati.get(i).stampaInfo();
+            System.out.println();
+        }
+    }
     
+    @Override
+    public void faiOfferta(int index, int valoreOfferta){
+        if(index < 0 || index >= sopralluoghiEffettuati.size()){
+            System.out.println("Il sopralluogo selezionato non esiste");
+        } else {
+            if(sopralluoghiEffettuati.get(index).offerta()){
+                System.out.println("E' gia' stata effettuata un offerta relativa a questo sopralluogo");
+            } else {
+                Offerta offerta = new Offerta(sopralluoghiEffettuati.get(index).getCondominio(), 
+                        sopralluoghiEffettuati.get(index).getCondominio().amministratore, valoreOfferta);
+                offerte.add(offerta);
+                sopralluoghiEffettuati.get(index).getCondominio().amministratore.aggiungiOfferta(offerta);
+                sopralluoghiEffettuati.get(index).setOfferta();
+            }
+        }
+    }
+
     // per Tecnico
-    private int selectTecnico(){
-        int index = (int) Math.random()*tecnici.size();
+    private int selectTecnico() {
+        int index = (int) Math.random() * tecnici.size();
         return index;
     }
 
@@ -162,5 +190,5 @@ public class Azienda extends Mediator {
     public void inviaResponsoSopralluogo(Sopralluogo s) {
         sopralluoghiEffettuati.add(s);
     }
-    
+
 }
