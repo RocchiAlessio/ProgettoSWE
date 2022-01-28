@@ -14,7 +14,7 @@ public class ProgettinoIngSoftware {
         
         Amministratore amm = new Amministratore("Beppe", "Fracico", a);
         Condominio c = new Condominio("Strutti 420", 10, 5, 5, 420, amm);
-        Condominio c2 = new Condominio("Strutti 69", 69, 69, 69, 4690, amm);
+        Condominio c2 = new Condominio("Smarmelli 69", 69, 69, 69, 4690, amm);
         
         amm.aggiungiCondominio(c);
         amm.aggiungiCondominio(c2);
@@ -29,27 +29,37 @@ public class ProgettinoIngSoftware {
         
         r.revisionaRichiesta(0, true);
         
+        r.revisionaRichiesta(1, true);
+        
         //t1.consultaRichieste();
-        //t2.consultaRichieste();
         
         //amm.consultaRichieste();
         
         t1.faiSopralluogo(0);
-        t2.faiSopralluogo(0);
+        t1.faiSopralluogo(0);           //Perchè le richieste poi vengono tolte dalla coda quindi quando si fa 0
+                                        //la 1 scala in posizione 0
         
-        amm.consultaOfferte();
+        //amm.consultaOfferte();
         
-        r.consultaSopralluoghi();
+        //r.consultaSopralluoghi();
         
         r.faiOfferta(0, 1000);
+        r.faiOfferta(1, 2000);
         
-        r.consultaSopralluoghi();
+        //r.consultaSopralluoghi();
         
-        amm.consultaOfferte();
+        //amm.consultaOfferte();
         
         amm.revisionaOfferta(0, true);
+        amm.revisionaOfferta(1, false);
         
         amm.consultaTutteOfferte();
+        
+        System.out.println("Vediamo se sono sincronizzate anche con il Responsabile:");
+        System.out.println();
+        
+        r.consultaOfferte();
+        
     }
     
 }

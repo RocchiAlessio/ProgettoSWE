@@ -79,10 +79,11 @@ public class Amministratore extends Persona {
     public void revisionaOfferta(int index, boolean accetto) {
         if (index < 0 || index >= offerte.size() || offerte.get(index).revisionata()) {
             System.out.println("L'offerta selezionata non è valida");
+            System.out.println();
         } else {
             offerte.get(index).setAccettata(accetto);
             offerte.get(index).setRevisionata();
-            // TODO metti che l'offerta risulta in quella maniera anche in azienda
+            azienda.revisionaOfferta(this, offerte.get(index).getCondominio(), accetto);
         }
     }
 }

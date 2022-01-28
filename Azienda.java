@@ -90,6 +90,17 @@ public class Azienda extends Mediator {
         }
     }
 
+    @Override
+    public void revisionaOfferta(Amministratore a, Condominio c, boolean b) {
+        for (int i = 0; i < offerte.size(); i++) {
+            Offerta o = offerte.get(i);
+            if (!o.revisionata() && o.getAmministratore() == a && o.getCondominio() == c) {
+                o.setRevisionata();
+                o.setAccettata(b);
+            }
+        }
+    }
+
     // per Responsabile
     @Override
     public void consultaRichieste() {
@@ -123,6 +134,7 @@ public class Azienda extends Mediator {
     public void revisionaRichiesta(int index, boolean b) {
         if (index < 0 || index > richieste.size()) {
             System.out.println("La richiesta selezionata non esiste");
+            System.out.println();
         } else {
             if (richieste.get(index).revisionata()) {
                 System.out.println("La richiesta selezionata è già stata revisionata");
@@ -162,21 +174,31 @@ public class Azienda extends Mediator {
             System.out.println();
         }
     }
-    
+
     @Override
-    public void faiOfferta(int index, int valoreOfferta){
-        if(index < 0 || index >= sopralluoghiEffettuati.size()){
+    public void faiOfferta(int index, int valoreOfferta) {
+        if (index < 0 || index >= sopralluoghiEffettuati.size()) {
             System.out.println("Il sopralluogo selezionato non esiste");
+            System.out.println();
         } else {
-            if(sopralluoghiEffettuati.get(index).offerta()){
+            if (sopralluoghiEffettuati.get(index).offerta()) {
                 System.out.println("E' gia' stata effettuata un offerta relativa a questo sopralluogo");
             } else {
-                Offerta offerta = new Offerta(sopralluoghiEffettuati.get(index).getCondominio(), 
+                Offerta offerta = new Offerta(sopralluoghiEffettuati.get(index).getCondominio(),
                         sopralluoghiEffettuati.get(index).getCondominio().amministratore, valoreOfferta);
                 offerte.add(offerta);
                 sopralluoghiEffettuati.get(index).getCondominio().amministratore.aggiungiOfferta(offerta);
                 sopralluoghiEffettuati.get(index).setOfferta();
             }
+        }
+    }
+    
+    @Override
+    public void consultaOfferte(){
+        for (int i = 0; i < offerte.size(); i++) {
+            System.out.println("Offerta numero: " + i);
+            offerte.get(i).stampaInfo();
+            System.out.println();
         }
     }
 

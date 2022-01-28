@@ -29,4 +29,8 @@ public class Responsabile extends Persona{
     public void faiOfferta(int index, int valoreOfferta){
         azienda.faiOfferta(index, valoreOfferta);
     }
+    
+    public void consultaOfferte(){
+        azienda.consultaOfferte();
+    }
 }

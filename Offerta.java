@@ -19,7 +19,7 @@ public class Offerta {
         condominio.stampaInfo();
         System.out.println("Amministrato da: ");
         amministratore.stampaInfo();
-        System.out.println("di valore: " + offerta);
+        System.out.println("di valore: € " + offerta);
         if(revisionata){
             System.out.println("Revisionata");
             if(accettata){
@@ -40,5 +40,13 @@ public class Offerta {
     
     public void setAccettata(boolean b){
         this.accettata = b;
+    }
+    
+    public Amministratore getAmministratore(){
+        return amministratore;
+    }
+    
+    public Condominio getCondominio(){
+        return condominio;
     }
 }
