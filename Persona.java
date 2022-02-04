@@ -11,4 +11,9 @@ public abstract class Persona {
         this.cognome = cognome;
         this.azienda = azienda;
     }
+
+    public Persona(String nome, String cognome) {
+        this.nome = nome;
+        this.cognome = cognome;
+    }
 }

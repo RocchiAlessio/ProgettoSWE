@@ -25,4 +25,8 @@ public class Condominio {
         System.out.println(" - unita commerciali = " + UC);
         System.out.println(" - numero garage = " + garage);
     }
+    
+    public int getTotaleUnita(){
+        return UA + UC;
+    }
 }
