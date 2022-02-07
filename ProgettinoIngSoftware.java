@@ -13,8 +13,17 @@ public class ProgettinoIngSoftware {
         a.aggiungiTecnico(t2);
         
         Amministratore amm = new Amministratore("Beppe", "Fracico", a);
-        Condominio c = new Condominio("Strutti 420", 10, 5, 5, 420, amm);
+        Condominio c = new Condominio("Strutti 420", 10, 2, 2, 2, amm);
         Condominio c2 = new Condominio("Smarmelli 69", 69, 69, 69, 4690, amm);
+        
+        Impresa imp = new Impresa("AsbrubaliniMammoliniCarinini.srl.spa.ru.uk");
+        Operaio o1 = new Operaio("Alino", "Brutti");
+        Operaio o2 = new Operaio("Alano", "Strutti");
+        Operaio o3 = new Operaio("Alieno", "Sbratti");
+        
+        imp.assumiOperaio(o1);
+        imp.assumiOperaio(o2);
+        imp.assumiOperaio(o3);
         
         amm.aggiungiCondominio(c);
         amm.aggiungiCondominio(c2);
@@ -53,12 +62,15 @@ public class ProgettinoIngSoftware {
         amm.revisionaOfferta(0, true);
         amm.revisionaOfferta(1, false);
         
-        amm.consultaTutteOfferte();
+        //amm.consultaTutteOfferte();
         
-        System.out.println("Vediamo se sono sincronizzate anche con il Responsabile:");
-        System.out.println();
+        //System.out.println("Vediamo se sono sincronizzate anche con il Responsabile:");
+        //System.out.println();
         
-        r.consultaOfferte();
+        //r.consultaOfferte();
+        
+        
+        imp.iniziaLavoro(c);
         
     }
     

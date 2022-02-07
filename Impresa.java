@@ -6,6 +6,7 @@ public class Impresa {
     
     private String nome;
     private ArrayList<Operaio> operai = new ArrayList<>();
+    private ArrayList<Cantiere> cantieri = new ArrayList<>();
     private boolean disponibile = true;
 
     public Impresa(String nome) {
@@ -18,9 +19,7 @@ public class Impresa {
     }
     
     public void stampaOperaiDisponibili(){
-        
         boolean flag = true;
-        
         for(int i=0; i<operai.size(); i++){
             if(operai.get(i).disponibile()){
                 operai.get(i).stampaInfo();
@@ -57,8 +56,39 @@ public class Impresa {
         }     
     }
     
+    public int getOperaiDisponibili(){
+        int num = 0;
+        for(int i=0; i<operai.size(); i++){
+            if(operai.get(i).disponibile()){
+                operai.get(i).stampaInfo();
+                System.out.println();
+                num++;
+            }
+        }
+        return num;
+    }
+    
+    public ArrayList<Operaio> scegliOperai(int numero){
+        ArrayList<Operaio> operaiScelti = new ArrayList<>();
+        int scelti = 0;
+        
+        for(int i=0; scelti < numero; i++){
+            if(operai.get(i).disponibile()){
+                operaiScelti.add(operai.get(i));
+                scelti++;
+            }
+        }
+        return operaiScelti;
+    }
+    
     public void iniziaLavoro(Condominio c){
         int numUnita = c.getTotaleUnita();
-        
+        if(numUnita / 3 > getOperaiDisponibili()){
+            System.out.println("Non ci sono abbastanza operai per iniziare il cantiere");
+        } else {
+            ArrayList<Operaio> operaiScelti = scegliOperai(numUnita / 3);
+            Cantiere cantiere = new Cantiere(operaiScelti, new Data());
+            cantieri.add(cantiere);
+        }
     }
 }
