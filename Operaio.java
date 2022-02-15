@@ -18,4 +18,8 @@ public class Operaio extends Persona{
     public boolean disponibile(){
         return disponibile;
     }
+    
+    public void setDisponibile(boolean disp){
+        this.disponibile = disp;
+    }
 }

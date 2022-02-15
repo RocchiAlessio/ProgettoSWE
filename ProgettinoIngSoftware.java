@@ -13,13 +13,15 @@ public class ProgettinoIngSoftware {
         a.aggiungiTecnico(t2);
         
         Amministratore amm = new Amministratore("Beppe", "Fracico", a);
-        Condominio c = new Condominio("Strutti 420", 10, 2, 2, 2, amm);
+        Condominio c = new Condominio("Strutti 420", 10, 9, 2, 2, amm);
         Condominio c2 = new Condominio("Smarmelli 69", 69, 69, 69, 4690, amm);
         
         Impresa imp = new Impresa("AsbrubaliniMammoliniCarinini.srl.spa.ru.uk");
         Operaio o1 = new Operaio("Alino", "Brutti");
         Operaio o2 = new Operaio("Alano", "Strutti");
         Operaio o3 = new Operaio("Alieno", "Sbratti");
+        
+        a.aggiungiImpresa(imp);
         
         imp.assumiOperaio(o1);
         imp.assumiOperaio(o2);
@@ -68,10 +70,20 @@ public class ProgettinoIngSoftware {
         //System.out.println();
         
         //r.consultaOfferte();
+        //r.consultaImprese();
         
+        r.commissionaLavoro(0, 0);
         
-        imp.iniziaLavoro(c);
+        imp.consultaRichieste();  
+        imp.stampaOperai();
         
+        imp.iniziaLavoro(0);
+        
+        imp.getOperaiDisponibili();         //NON SI UPDATE I DISPONIBILI
+        
+        imp.terminaCantiere(0);
+        
+        imp.stampaCantieri();
     }
     
 }

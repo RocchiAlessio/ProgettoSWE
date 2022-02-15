@@ -33,4 +33,12 @@ public class Responsabile extends Persona{
     public void consultaOfferte(){
         azienda.consultaOfferte();
     }
+    
+    public void consultaImprese(){
+        azienda.consultaImprese();
+    }
+    
+    public void commissionaLavoro(int offIndex, int impIndex){
+        azienda.commissionaLavoro(offIndex, impIndex);
+    }
 }

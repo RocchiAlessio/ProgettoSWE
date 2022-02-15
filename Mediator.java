@@ -15,8 +15,7 @@ public abstract class Mediator {
     
     public abstract void consultaRichieste(Condominio c);
     
-    public abstract void revisionaOfferta(Amministratore a, Condominio c, boolean b);
-    
+    public abstract void revisionaOfferta(Amministratore a, Condominio c, boolean b);   
     
     // per il Responsabile
     public abstract void consultaRichieste();
@@ -32,6 +31,10 @@ public abstract class Mediator {
     public abstract void faiOfferta(int index, int valoreOfferta);
     
     public abstract void consultaOfferte();
+    
+    public abstract void consultaImprese();
+    
+    public abstract void commissionaLavoro(int offIndex, int impIndex);
     
     // per il Tecnico
     public abstract void inviaResponsoSopralluogo(Sopralluogo s);

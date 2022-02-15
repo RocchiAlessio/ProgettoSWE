@@ -42,6 +42,10 @@ public class Offerta {
         this.accettata = b;
     }
     
+    public boolean accettata(){
+        return accettata;
+    }
+    
     public Amministratore getAmministratore(){
         return amministratore;
     }

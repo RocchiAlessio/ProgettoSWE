@@ -12,11 +12,13 @@ public class Azienda extends Mediator {
     private ArrayList<Richiesta> richieste = new ArrayList<>();
     private ArrayList<Sopralluogo> sopralluoghiEffettuati = new ArrayList<>();
     private ArrayList<Offerta> offerte = new ArrayList<>();
+    private ArrayList<Impresa> imprese = new ArrayList<>();
 
     public Azienda(String nome) {
         super(nome);
     }
 
+    //Aggiungiamo i valori al semi DB
     public void assumiResponsabile(Responsabile r) {
         responsabile = r;
     }
@@ -27,6 +29,10 @@ public class Azienda extends Mediator {
 
     private void aggiungiAmministratore(Amministratore a) {
         amministratori.add(a);
+    }
+    
+    public void aggiungiImpresa(Impresa i) {
+        imprese.add(i);
     }
 
     private boolean verificaSeEsiste(Amministratore a, Condominio c) {
@@ -41,6 +47,7 @@ public class Azienda extends Mediator {
 
     // pattern Mediator
     // per Amministratore
+    
     @Override
     public void generaRichiesta(Condominio c, Amministratore a) {
 
@@ -105,17 +112,17 @@ public class Azienda extends Mediator {
     @Override
     public void consultaRichieste() {
 
-        int num = 0;
+        boolean flag = true;
 
         for (int i = 0; i < richieste.size(); i++) {
             if (richieste.get(i).revisionata() == false) {
-                num++;
+                flag = false;
                 System.out.println("Richiesta numero: " + i);
                 richieste.get(i).stampaInfo();
                 System.out.println();
             }
         }
-        if (num == 0) {
+        if (flag) {
             System.out.println("Non ci sono richieste da revisionare");
             System.out.println();
         }
@@ -150,17 +157,17 @@ public class Azienda extends Mediator {
     @Override
     public void consultaSopralluoghi() {
 
-        int num = 0;
+        boolean flag = true;
 
         for (int i = 0; i < sopralluoghiEffettuati.size(); i++) {
             if (sopralluoghiEffettuati.get(i).offerta() == false) {
-                num++;
+                flag = false;
                 System.out.println("Sopralluogo numero: " + i);
                 sopralluoghiEffettuati.get(i).stampaInfo();
                 System.out.println();
             }
         }
-        if (num == 0) {
+        if (flag) {
             System.out.println("Non sono stati effettuati altri sopralluoghi");
             System.out.println();
         }
@@ -198,6 +205,37 @@ public class Azienda extends Mediator {
         for (int i = 0; i < offerte.size(); i++) {
             System.out.println("Offerta numero: " + i);
             offerte.get(i).stampaInfo();
+            System.out.println();
+        }
+    }
+    
+    @Override
+    public void consultaImprese() {
+        for (int i = 0; i < imprese.size(); i++) {
+            System.out.println("Impresa numero: " + i);
+            imprese.get(i).stampaInfo();
+            System.out.println();
+        }
+    }
+    
+    @Override
+    public void commissionaLavoro(int offIndex, int impIndex) {
+        if(offIndex >= 0 && offIndex < offerte.size()){                                    
+            if(offerte.get(offIndex).revisionata() && offerte.get(offIndex).accettata()){   //controllo se è revisionata e accettata
+                if(impIndex >= 0 && impIndex < imprese.size()){
+                    
+                    imprese.get(impIndex).aggiungiRichiesta(offerte.get(offIndex).getCondominio()); //qua fa effettivamente il lavoro
+                    
+                } else {
+                    System.out.println("L'impresa selezionata non esiste");
+                    System.out.println();
+                }
+            } else {
+                System.out.println("L'offerta selezionata non è valida");
+                System.out.println();
+            }
+        } else {
+            System.out.println("L'offerta selezionata non è valida");
             System.out.println();
         }
     }
