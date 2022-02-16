@@ -62,7 +62,7 @@ public class ProgettinoIngSoftware {
         //amm.consultaOfferte();
         
         amm.revisionaOfferta(0, true);
-        amm.revisionaOfferta(1, false);
+        amm.revisionaOfferta(1, true);
         
         //amm.consultaTutteOfferte();
         
@@ -73,17 +73,21 @@ public class ProgettinoIngSoftware {
         //r.consultaImprese();
         
         r.commissionaLavoro(0, 0);
-        
+        r.commissionaLavoro(1, 0);
+         
         imp.consultaRichieste();  
-        imp.stampaOperai();
+        //imp.stampaOperai();
         
         imp.iniziaLavoro(0);
+        imp.iniziaLavoro(1);
         
-        imp.getOperaiDisponibili();         //NON SI UPDATE I DISPONIBILI
+        imp.stampaOperai();        
         
-        imp.terminaCantiere(0);
+        //imp.terminaCantiere(0);
         
-        imp.stampaCantieri();
+        //imp.stampaCantieri();
+        
+        //imp.stampaOperaiDisponibili();
     }
     
 }

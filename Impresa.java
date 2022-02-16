@@ -56,14 +56,9 @@ public class Impresa {
     public void stampaOperai() {
 
         for (int i = 0; i < operai.size(); i++) {
-            if (operai.get(i).disponibile()) {
-                System.out.println("Operaio numero " + i + ":");
-                operai.get(i).stampaInfo();
-                if (!operai.get(i).disponibile()) {
-                    System.out.println("Non Disponibile");
-                }
-                System.out.println();
-            }
+            System.out.println("Operaio numero " + i + ":");
+            operai.get(i).stampaInfo();
+            System.out.println();
         }
     }
 
@@ -146,32 +141,32 @@ public class Impresa {
                 flag = false;
             }
         }
-        if(flag){
+        if (flag) {
             System.out.println("Non ci sono cantieri attivi");
             System.out.println();
         }
     }
-    
-    public void terminaCantiere(int index){
-        if(index < 0 || index >= cantieri.size()){
+
+    public void terminaCantiere(int index) {
+        if (index < 0 || index >= cantieri.size()) {
             System.out.println("Il cantieri selezionato non esiste");
             System.out.println();
         } else {
-            if(!cantieri.get(index).attivo()){
+            if (!cantieri.get(index).attivo()) {
                 System.out.println("Il cantieri selezionato non è in corso");
                 System.out.println();
             } else {
                 cantieri.get(index).terminaCantiere();
                 ArrayList<Operaio> operaiCoinvolti = cantieri.get(index).getOperaiCoinvolti();
-                
-                for(int i=0; i<operaiCoinvolti.size(); i++){
-                    for(int j=0; j<operai.size(); j++){
-                        if(operai.get(j).equals(operaiCoinvolti.get(i))){
+
+                for (int i = 0; i < operaiCoinvolti.size(); i++) {
+                    for (int j = 0; j < operai.size(); j++) {
+                        if (operai.get(j).equals(operaiCoinvolti.get(i))) {
                             operai.get(j).setDisponibile(true);
                         }
                     }
                 }
-                
+
             }
         }
     }
