@@ -18,11 +18,13 @@ public class AziendaTest {
      */
     @Test
     public void testAssumiResponsabile() {
-        Azienda a = new Azienda("Test.Test");
+        Azienda a = Azienda.getIstanza();
         Responsabile r = new Responsabile("Test", "Test", a);
 
         a.assumiResponsabile(r);
         assertEquals(r, a.getResponsabile());
+        
+        a.cancellaIstanza();
     }
 
     /**
@@ -30,7 +32,7 @@ public class AziendaTest {
      */
     @Test
     public void testAggiungiTecnico() {
-        Azienda a = new Azienda("Test.Test");
+        Azienda a = Azienda.getIstanza();
         Tecnico t1 = new Tecnico("Test", "Test", a);
         Tecnico t2 = new Tecnico("Test", "Test", a);
 
@@ -43,6 +45,8 @@ public class AziendaTest {
         for (int i = 0; i < actual.size(); i++) {
             assertEquals(expected.get(i), actual.get(i));
         }
+        
+        a.cancellaIstanza();
     }
 
     /**
@@ -50,7 +54,7 @@ public class AziendaTest {
      */
     @Test
     public void testGeneraRichiesta() {
-        Azienda a = new Azienda("Test.Test");
+        Azienda a = Azienda.getIstanza();
         Amministratore amm = new Amministratore("Test", "Test", a);
         Condominio c = new Condominio("Test", 10, 9, 2, 2, amm);
         
@@ -58,6 +62,8 @@ public class AziendaTest {
         ArrayList<Richiesta> richieste = a.getRichieste();
         assertEquals(richieste.get(0).getAmministratore(), amm);
         assertEquals(c, richieste.get(0).getCondominio());
+        
+        a.cancellaIstanza();
     }
 
     /**
@@ -65,7 +71,7 @@ public class AziendaTest {
      */
     @Test
     public void testRevisionaOfferta() {
-        Azienda a = new Azienda("Test");
+        Azienda a = Azienda.getIstanza();
         Responsabile r = new Responsabile("Test", "Test", a);
         a.assumiResponsabile(r);
         Tecnico t1 = new Tecnico("Test", "Test", a);
@@ -90,6 +96,8 @@ public class AziendaTest {
         assertEquals(true, offerte.get(0).accettata());
         assertEquals(amm, offerte.get(0).getAmministratore());
         assertEquals(c, offerte.get(0).getCondominio());
+        
+        a.cancellaIstanza();
     }
 
     /**
@@ -97,7 +105,7 @@ public class AziendaTest {
      */
     @Test
     public void testRevisionaRichiesta() {
-        Azienda a = new Azienda("Test");
+        Azienda a = Azienda.getIstanza();
         Responsabile r = new Responsabile("Test", "Test", a);
         a.assumiResponsabile(r);
         Tecnico t1 = new Tecnico("Test", "Test", a);
@@ -116,6 +124,8 @@ public class AziendaTest {
         assertEquals(true, richieste.get(0).accettata());
         assertEquals(amm, richieste.get(0).getAmministratore());
         assertEquals(c, richieste.get(0).getCondominio());
+        
+        a.cancellaIstanza();
     }
 
     /**
@@ -123,7 +133,7 @@ public class AziendaTest {
      */
     @Test
     public void testFaiOfferta() {
-        Azienda a = new Azienda("Test");
+        Azienda a = Azienda.getIstanza();
         Responsabile r = new Responsabile("Test", "Test", a);
         a.assumiResponsabile(r);
         Tecnico t1 = new Tecnico("Test", "Test", a);
@@ -146,6 +156,8 @@ public class AziendaTest {
         assertEquals(amm, offerte.get(0).getAmministratore());
         assertEquals(c, offerte.get(0).getCondominio());
         assertEquals(1000, offerte.get(0).getOfferta());
+        
+        a.cancellaIstanza();
     }
 
     /**
@@ -153,7 +165,7 @@ public class AziendaTest {
      */
     @Test
     public void testInviaResponsoSopralluogo() {
-        Azienda a = new Azienda("Test");
+        Azienda a = Azienda.getIstanza();
         Responsabile r = new Responsabile("Test", "Test", a);
         a.assumiResponsabile(r);
         Tecnico t1 = new Tecnico("Test", "Test", a);
@@ -172,6 +184,8 @@ public class AziendaTest {
         ArrayList<Sopralluogo> sopralluoghi = a.getSopralluoghi();
         assertEquals(t1, sopralluoghi.get(0).getTecnico());
         assertEquals(c, sopralluoghi.get(0).getCondominio());
+        
+        a.cancellaIstanza();
     }
 
 }
