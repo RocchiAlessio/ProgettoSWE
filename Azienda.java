@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Azienda extends Mediator {
 
+    private static Azienda istanza;                                             //per il pattern Singleton
+    
     private ArrayList<Tecnico> tecnici = new ArrayList<>();
     private Responsabile responsabile;
     private ArrayList<Amministratore> amministratori = new ArrayList<>();
@@ -14,9 +16,21 @@ public class Azienda extends Mediator {
     private ArrayList<Offerta> offerte = new ArrayList<>();
     private ArrayList<Impresa> imprese = new ArrayList<>();
 
-    public Azienda(String nome) {
+    private Azienda(String nome) {
         super(nome);
     }
+    
+    public static Azienda getIstanza() {
+        if(istanza == null){
+            istanza = new Azienda("Azienda.srl");
+        }
+        return istanza;
+    }
+    
+    public void cancellaIstanza(){                                              // utilizzato per testare il Singleton
+        istanza = null;                                                         // se non utilizzato da errore quando si
+    }                                                                           // eseguono test in cascata perchè rimane
+                                                                                // l'istanza attiva attraverso i test
 
     //Aggiungiamo i valori al semi DB
     public void assumiResponsabile(Responsabile r) {

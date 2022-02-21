@@ -4,7 +4,7 @@ public class ProgettinoIngSoftware {
 
     public static void main(String[] args) {
         
-        Azienda a = new Azienda("Bruttoloni.org");
+        Azienda a = Azienda.getIstanza();
         Responsabile r = new Responsabile("Calogero", "Cartelli", a);
         a.assumiResponsabile(r);
         Tecnico t1 = new Tecnico("Vladimiro", "Sterconi", a);
