@@ -18,6 +18,14 @@ public class Condominio {
         this.amministratore = amministratore;
     }
     
+    public Condominio(String via, int numCondomini, int UA, int UC, int garage) {
+        this.via = via;
+        this.numCondomini = numCondomini;
+        this.UA = UA;
+        this.UC = UC;
+        this.garage = garage;
+    }
+    
     public void stampaInfo() {
         System.out.println("Condominio in via " + via + " con: ");
         System.out.println(" - numero condomini = " + numCondomini);

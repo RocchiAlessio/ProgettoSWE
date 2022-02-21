@@ -38,8 +38,7 @@ public class ProgettinoIngSoftware {
         
         //r.consultaRichieste();
         
-        r.revisionaRichiesta(0, true);
-        
+        r.revisionaRichiesta(0, true);   
         r.revisionaRichiesta(1, true);
         
         //t1.consultaRichieste();

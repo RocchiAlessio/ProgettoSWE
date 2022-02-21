@@ -53,4 +53,8 @@ public class Offerta {
     public Condominio getCondominio(){
         return condominio;
     }
+    
+    public int getOfferta(){
+        return offerta;
+    }
 }

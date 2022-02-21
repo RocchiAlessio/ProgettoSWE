@@ -37,4 +37,8 @@ public class Sopralluogo {
     public Condominio getCondominio(){
         return condominio;
     }
+    
+    public Tecnico getTecnico(){
+        return tecnico;
+    }
 }

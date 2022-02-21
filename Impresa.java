@@ -17,10 +17,22 @@ public class Impresa {
         this.nome = nome;
         this.operai = operai;
     }
+    
+    public ArrayList<Operaio> getOperai(){
+        return operai;
+    }
+    
+    public ArrayList<Condominio> getRichieste(){
+        return richieste;
+    }
+    
+    public ArrayList<Cantiere> getCantieri(){
+        return cantieri;
+    }
 
     public void stampaInfo() {
         System.out.println(nome);
-        System.out.println("con operai disponibili: " + getOperaiDisponibili());
+        System.out.println("con operai disponibili: " + getNumOperaiDisponibili());
     }
 
     //Metodi per il management degli operai
@@ -62,7 +74,7 @@ public class Impresa {
         }
     }
 
-    public int getOperaiDisponibili() {
+    public int getNumOperaiDisponibili() {
         int num = 0;
         for (int i = 0; i < operai.size(); i++) {
             if (operai.get(i).disponibile()) {
@@ -111,7 +123,7 @@ public class Impresa {
             System.out.println("La richiesta selezionata non esiste");
             System.out.println();
         } else {
-            if (richieste.get(index).getTotaleUnita() / 3 > getOperaiDisponibili()) {
+            if (richieste.get(index).getTotaleUnita() / 3 > getNumOperaiDisponibili()) {
                 System.out.println("Non ci sono abbastanza operai per iniziare un cantiere");
                 System.out.println();
             } else {

@@ -22,9 +22,17 @@ public class Azienda extends Mediator {
     public void assumiResponsabile(Responsabile r) {
         responsabile = r;
     }
+    
+    public Responsabile getResponsabile(){
+        return responsabile;
+    }
 
     public void aggiungiTecnico(Tecnico t) {
         tecnici.add(t);
+    }
+    
+    public ArrayList<Tecnico> getTecnici(){
+        return tecnici;
     }
 
     private void aggiungiAmministratore(Amministratore a) {
@@ -33,6 +41,18 @@ public class Azienda extends Mediator {
     
     public void aggiungiImpresa(Impresa i) {
         imprese.add(i);
+    }
+    
+    public ArrayList<Richiesta> getRichieste(){
+        return richieste;
+    }
+    
+    public ArrayList<Offerta> getOfferte(){
+        return offerte;
+    }
+    
+    public ArrayList<Sopralluogo> getSopralluoghi(){
+        return sopralluoghiEffettuati;
     }
 
     private boolean verificaSeEsiste(Amministratore a, Condominio c) {
