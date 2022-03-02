@@ -5,21 +5,21 @@ public class ProgettinoIngSoftware {
     public static void main(String[] args) {
         
         Azienda a = Azienda.getIstanza();
-        Responsabile r = new Responsabile("Calogero", "Cartelli", a);
+        Responsabile r = new Responsabile("RespMain", "Main", a);
         a.assumiResponsabile(r);
-        Tecnico t1 = new Tecnico("Vladimiro", "Sterconi", a);
-        Tecnico t2 = new Tecnico("Andrea", "Salamelli", a);
+        Tecnico t1 = new Tecnico("TecnMain", "1", a);
+        Tecnico t2 = new Tecnico("TecnMain", "2", a);
         a.aggiungiTecnico(t1);
         a.aggiungiTecnico(t2);
         
-        Amministratore amm = new Amministratore("Beppe", "Fracico", a);
-        Condominio c = new Condominio("Strutti 420", 10, 9, 2, 2, amm);
-        Condominio c2 = new Condominio("Smarmelli 69", 69, 69, 69, 4690, amm);
+        Amministratore amm = new Amministratore("AmmMain", "Main", a);
+        Condominio c = new Condominio("CondMain 1", 10, 9, 2, 2, amm);
+        Condominio c2 = new Condominio("CondMain 2", 50, 10, 10, 10, amm);
         
-        Impresa imp = new Impresa("AsbrubaliniMammoliniCarinini.srl.spa.ru.uk");
-        Operaio o1 = new Operaio("Alino", "Brutti");
-        Operaio o2 = new Operaio("Alano", "Strutti");
-        Operaio o3 = new Operaio("Alieno", "Sbratti");
+        Impresa imp = new Impresa("ImpMain.spa");
+        Operaio o1 = new Operaio("OpMain", "1");
+        Operaio o2 = new Operaio("OpMain", "2");
+        Operaio o3 = new Operaio("OpMain", "3");
         
         a.aggiungiImpresa(imp);
         
@@ -80,13 +80,13 @@ public class ProgettinoIngSoftware {
         imp.iniziaLavoro(0);
         imp.iniziaLavoro(1);
         
-        imp.stampaOperai();        
+        //imp.stampaOperai();        
         
         //imp.terminaCantiere(0);
         
         //imp.stampaCantieri();
         
-        //imp.stampaOperaiDisponibili();
+        imp.stampaOperaiDisponibili();
     }
     
 }
